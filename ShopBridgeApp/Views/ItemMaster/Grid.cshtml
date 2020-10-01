@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShopBridgeApp.Models.ItemMaster>
+@{
+    Layout = null;
+}
+<div class="wrapper">
+    <div id="grid-cover-spin" class="cover-spin">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ItemName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th style="width:8%">
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th style="width:10%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ItemName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @if (item.Image != null && item.Image != "")
+                            {
+                                <img src="@Url.Content(item.Image)" class="grid-img" />
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" title="View" href="@Url.Action("Details",new { id=item.ItemID})"><i class="fa fa-eye"></i></a>
+                            <a class="btn btn-danger" title="View" onclick="deleteitem(@item.ItemID)"><i class="fa fa-trash"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    function deleteitem(id) {
+        if (id != '' && confirm("Want to delete this item?")) {
+            $.ajax({
+                url: '/ItemMaster/Delete',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ id: id }),
+                success: function (data) {
+                    GridLoad();
+                },
+                complete: function () {
+                    $('#grid-cover-spin').hide();
+                },
+                beforeSend: function (xhr) {
+                    $('#grid-cover-spin').show();
+                }
+            });
+        }
+    }
+</script>

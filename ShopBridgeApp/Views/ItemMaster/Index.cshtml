@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Item Master";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-12" id="itemnewform">
+        @{Html.RenderAction("Create", "ItemMaster");}
+    </div>
+    <div class="col-12" id="itemgrid">
+        @{Html.RenderAction("Grid", "ItemMaster");}
+    </div>
+</div>
+<script>
+    function GridLoad() {
+        $.ajax({
+            url: '/ItemMaster/Grid',
+            type: 'GET',
+            success: function (data) {
+
+                $('#itemgrid').html();
+                if (data != undefined) {
+                    $('#itemgrid').html(data);
+                }
+            },
+            complete: function () {
+                $('#grid-cover-spin').hide();
+            },
+            beforeSend: function (xhr) {
+                $('#grid-cover-spin').show();
+            }
+        });
+    }
+</script>

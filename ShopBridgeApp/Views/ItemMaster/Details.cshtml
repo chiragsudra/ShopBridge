@@ -1,0 +1,26 @@
+﻿@model ShopBridgeApp.Models.ItemMaster
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="view view-detail">
+    <div class="card" style="width: 18rem;">
+        @if (!string.IsNullOrEmpty(Model.Image))
+        {
+            <img src="@Url.Content(Model.Image)" class="card-img-top" alt="...">
+        }
+        <div class="card-body">
+            <h5 class="card-title">Name: @Model.ItemName</h5>
+            <p class="card-text">Description: @Model.Description</p>
+            @*<a href="#" class="btn btn-primary">Go somewhere</a>*@
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Price: $ @Model.Price</li>
+        </ul>
+    </div>
+    <div class="m-2">
+        <a href="@Url.Action("Index")"><i class="fa fa-arrow-left"></i> Back</a>
+    </div>
+</div>

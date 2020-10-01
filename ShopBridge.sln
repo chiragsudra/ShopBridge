@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1259
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopBridgeApp", "ShopBridgeApp\ShopBridgeApp.csproj", "{A93D953B-0026-400F-AE1E-5210DB7ED263}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShopBridgeApp.Tests", "ShopBridgeApp.Tests\ShopBridgeApp.Tests.csproj", "{6EB5B699-715B-4054-A5B1-38167C1E5010}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A93D953B-0026-400F-AE1E-5210DB7ED263}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A93D953B-0026-400F-AE1E-5210DB7ED263}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A93D953B-0026-400F-AE1E-5210DB7ED263}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A93D953B-0026-400F-AE1E-5210DB7ED263}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EB5B699-715B-4054-A5B1-38167C1E5010}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EB5B699-715B-4054-A5B1-38167C1E5010}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EB5B699-715B-4054-A5B1-38167C1E5010}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EB5B699-715B-4054-A5B1-38167C1E5010}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {46E027C9-4A02-4825-92B9-3EB4871467C4}
+	EndGlobalSection
+EndGlobal

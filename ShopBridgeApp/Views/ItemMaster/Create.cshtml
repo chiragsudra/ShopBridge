@@ -1,0 +1,80 @@
+﻿@model ShopBridgeApp.Models.ItemMaster
+
+@{
+    ViewBag.Title = "Create";
+    Layout = null;
+}
+
+<div class="wrapper">
+    <div id="new-cover-spin" class="cover-spin">
+        <div class="spinner-border text-success" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    @using (Ajax.BeginForm("Create", "ItemMaster",
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "itemnewform",
+            HttpMethod = "POST",
+            LoadingElementId = "new-cover-spin",
+            OnComplete="GridLoad",
+            OnBegin="return Validate()"
+        },
+        new { @enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.Label("Name", htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.ItemName, new { @class = "form-control", @data_required="true", @data_maxlength="100" })
+                    @Html.ValidationMessageFor(model => model.ItemName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    @Html.Label("Price", htmlAttributes: new { @class = "control-label" })
+                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control",@data_required = "true",@data_decimal="true", @data_maxlength = "15" })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="form-group">
+                    @Html.Label("Description", htmlAttributes: new { @class = "control-label" })
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @rows = "3", @data_required = "true", @data_maxlength = "250" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-2">
+                <div class="form-group">
+                    @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <input type="file" name="postedImage" id="file" />
+                    @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-2">
+                @if (Model != null && Model.Image != null)
+                {
+                    <img src="@Url.Content(Model.Image)" />
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12" style="text-align:center;">
+                <div class="form-group">
+                    <input type="submit" value="SAVE" class="btn btn-success" />
+                    <input type="button" value="CANCEL" class="btn btn-dark" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    function Validate() {
+        return FormValidate();
+    }
+</script>
